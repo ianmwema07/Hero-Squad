@@ -1,3 +1,9 @@
+package models;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Objects;
+
 public class Hero {
     public String name;
     public int age;
@@ -10,6 +16,23 @@ public class Hero {
         this.special_power = special_power;
         this.weakness = weakness;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setSpecial_power(String special_power) {
+        this.special_power = special_power;
+    }
+
+    public void setWeakness(String weakness) {
+        this.weakness = weakness;
+    }
+
 
     public String getName() {
         return name;
