@@ -5,5 +5,5 @@ id int PRIMARY KEY auto_increment,
 name VARCHAR ,
 age int,
 special_power VARCHAR ,
-weaknes varchar
+weakness varchar
 );

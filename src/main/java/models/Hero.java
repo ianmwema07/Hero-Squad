@@ -49,4 +49,7 @@ public class Hero {
     public String getWeakness() {
         return weakness;
     }
+
+    public void setId(int id) {
+    }
 }

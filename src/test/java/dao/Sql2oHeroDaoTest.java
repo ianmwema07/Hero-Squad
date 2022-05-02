@@ -6,6 +6,8 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class Sql2oHeroDaoTest {
+
+
     private Sql2oHeroDao  heroDao;
     private Connection conn;
 
@@ -20,5 +22,13 @@ public class Sql2oHeroDaoTest {
     @After
     public void tearDown() throws Exception{
         conn.close();
+    }
+
+    @Test
+    public void addingCourseSetsAge() throws Exception {
+        Hero hero = new Hero("BatMan",43,"rich","Ego");
+        int originalHeroAge = hero.getAge();
+        heroDao.add(hero);
+        assertNotEquals(originalHeroAge, hero.getAge()); //how does this work?
     }
 }
