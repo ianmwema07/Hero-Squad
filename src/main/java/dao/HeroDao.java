@@ -16,6 +16,8 @@ public interface HeroDao {
         return null;
     }
 
+
+
     static Hero findById(int id) {
 
 
@@ -24,12 +26,21 @@ public interface HeroDao {
 
     // UPDATE
 
+
+
+    void update(int id, String name);
+
+    void update(int id, String name, int age, String newSpecialPower, String weakness);
+
     // DELETE
     static void deleteById(int id) {
     }
 
+
+
     static void clearAllHeroes() {
 
     }
+
 
 }

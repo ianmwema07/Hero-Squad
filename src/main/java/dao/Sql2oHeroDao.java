@@ -26,7 +26,7 @@ public class Sql2oHeroDao implements HeroDao{
 
     }
 
-    @Override
+
     public List<Hero> getAll() {
         try(Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM heroes") //raw sql
@@ -36,7 +36,7 @@ public class Sql2oHeroDao implements HeroDao{
 
 
 
-    @Override
+
     public Hero findById(int id) {
         try(Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM heroes WHERE id = :id")
@@ -65,7 +65,7 @@ public class Sql2oHeroDao implements HeroDao{
 
     }
 
-    @Override
+
     public void deleteById(int id) {
         String sql = "DELETE from heroes WHERE id=:id";
         try (Connection con = sql2o.open()) {
@@ -77,7 +77,7 @@ public class Sql2oHeroDao implements HeroDao{
         }
     }
 
-    @Override
+
     public void clearAllHeroes() {
         String sql = "DELETE from heroes";
         try (Connection con = sql2o.open()) {
