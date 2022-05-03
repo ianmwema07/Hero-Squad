@@ -4,38 +4,20 @@ import models.Hero;
 import java.util.List;
 
 public interface HeroDao {
-
-    //List of Heroes
-    static List<Hero> getAll() {
-        return null;
-    }
-
-    //Create
-    void add(Hero hero);
-
+    // LIST
     List<Hero> getAll();
 
-    //Read
-    static int findById(int id) {
-        return 0;
-    }
+    // CREATE
+    void add(Hero hero);
 
+    // READ
     Hero findById(int id);
 
-    static void deleteById(int id) {
-    }
+    // UPDATE
+     void update(int id, String name);
 
-    static void clearAllHeroes() {
-
-    }
-
-    //update
-    static void update(String name) {
-
-    }
-
-    void clearAllTasks();
-
-    //DELETE
+    // DELETE
+     void deleteById(int id);
+     void clearAllTasks();
 
 }

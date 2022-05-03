@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Hero {
-
+    private int id;
     private String name;
     private int age;
     private String special_power;
@@ -48,8 +48,9 @@ public class Hero {
     public void setWeakness(String weakness) {
         this.weakness = weakness;
     }
-
-
+    public int getId() {
+        return id;
+    }
     public String getName() {
         return name;
     }
