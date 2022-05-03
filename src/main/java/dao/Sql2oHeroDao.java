@@ -50,7 +50,9 @@ public class Sql2oHeroDao implements HeroDao{
 
     }
 
-    public void update(int id, String name,int age, String newSpecialPower, String weakness ){
+
+    @Override
+    public void update(int id, String name, int age, String newSpecialPower, String weakness){
         String sql = "UPDATE heroes SET special_power = :special_power WHERE id=:id";
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
@@ -76,7 +78,7 @@ public class Sql2oHeroDao implements HeroDao{
     }
 
     @Override
-    public void clearAllTasks() {
+    public void clearAllHeroes() {
         String sql = "DELETE from heroes";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)

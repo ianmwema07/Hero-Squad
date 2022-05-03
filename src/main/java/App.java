@@ -57,7 +57,7 @@ public class App {
             String special_power = req.queryParams("special_power");
             String weakness = req.queryParams("weakness");
 
-            Hero newHero = new Hero(name,age,special_power,weakness); //change
+            Hero newHero = new Hero(name,age,special_power,weakness,id); //change
             heroDao.add(newHero);
             res.redirect("/");
             return null;
