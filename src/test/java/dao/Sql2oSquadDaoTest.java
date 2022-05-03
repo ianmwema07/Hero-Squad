@@ -21,7 +21,7 @@ public class Sql2oSquadDaoTest extends TestCase {
     public void setUp() throws Exception{
         String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
         Sql2o sql2o = new Sql2o(connectionString, "","");
-        squadDao = (Sql2oSquadDao) new Sql2oHeroDao(sql2o);
+        squadDao = new Sql2oSquadDao(sql2o);
         conn = sql2o.open();
     }
 
