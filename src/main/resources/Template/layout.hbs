@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{#block "title"}}Blog{{/block}}</title>
+    <title>{{#block "title"}}Hero Squad{{/block}}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
 <ul class="nav nav-tabs">
     <li role="presentation" class="active"><a href="/">Home</a></li>
-    <li role="presentation"><a href="/tasks/new">Add a New Task</a></li>
+    <li role="presentation"><a href="/tasks/new">Add a New Hero</a></li>
 
     <li role="presentation" class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -16,12 +16,12 @@
         <ul class="dropdown-menu">
             {{#if categories}}
                 {{#each categories}}
-                    <li><a href="/categories/{{id}}">{{name}}</a></li>
+                    <li><a href="/squads/{{id}}">{{name}}</a></li>
                 {{/each}}
-                <li><a href="/categories/new">Add a Category</a></li>
+                <li><a href="/squads/new">Add a Squad</a></li>
 
             {{else}}
-                <li><a href="/categories/new">Add a Category</a></li>
+                <li><a href="/squads/new">Add a Squad</a></li>
             {{/if}}
         </ul>
     </li>
@@ -29,7 +29,6 @@
 <div class="container">
     <!--begin main template-->
     <div class="page-header">
-        <img src="/images/rawpixel-com-296621.jpg" width="70%" alt="https://unsplash.com/search/task?photo=Lh_bn9SgRSY">
         <h1>Welcome to my To Do List. <small>Let's be organized, focused, and efficient.</small></h1>
     </div>
 
@@ -45,8 +44,8 @@
         <div class="container">
             <hr>
             <p class="text-muted">
-                <a href="/categories/delete">delete all categories & tasks</a><br>
-                <a href="/tasks/delete">delete all tasks</a>
+                <a href="/squads/delete">delete all categories & tasks</a><br>
+                <a href="/heroes/delete">delete all tasks</a>
             </p>
         </div>
     </footer>
