@@ -1,5 +1,6 @@
 package models;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Squad {
@@ -7,6 +8,9 @@ public class Squad {
     private String name;
     private String cause;
 
+    List<Hero> getAllHeroesBy(int squad_id) {
+        return null;
+    }
 
     public Squad(int maxSize, String name, String cause) {
         this.maxSize = maxSize;
@@ -50,5 +54,9 @@ public class Squad {
 
     public void setCause(String cause) {
         this.cause = cause;
+    }
+
+    public int getId() {
+        return 0;
     }
 }

@@ -26,7 +26,7 @@ public class Sql2oHeroDaoTest {
 
     @Test
     public void addingCourseSetsAge() throws Exception {
-        Hero hero = new Hero("BatMan",43,"rich","Ego",1);
+        Hero hero = new Hero("BatMan",43,"rich","Ego",1,1);
         int originalHeroAge = hero.getId();
         heroDao.add(hero);
         assertNotEquals(originalHeroAge, hero.getId()); //how does this work?
@@ -34,7 +34,7 @@ public class Sql2oHeroDaoTest {
 
     @Test
     public void existingHeroesCanBeFoundById() throws Exception {
-        Hero hero = new Hero("BatMan",43,"rich","Ego",1);
+        Hero hero = new Hero("BatMan",43,"rich","Ego",1,1);
         HeroDao.add(hero); //add to dao (takes care of saving)
         Hero foundHero = HeroDao.findById(Hero.getId()); //retrieve
         assertEquals(hero, foundHero); //should be the same

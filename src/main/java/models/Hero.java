@@ -5,18 +5,19 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Hero {
-    private int id;
+    private static int id;
     private String name;
     private int age;
     private String special_power;
     private String weakness;
-
-    public Hero(String name, int age, String special_power, String weakness,int id) {
+    private int squadId;
+    public Hero(String name, int age, String special_power, String weakness,int id,int squadId) {
         this.name = name;
         this.age = age;
         this.special_power = special_power;
         this.weakness = weakness;
         this.id = id;
+        this.squadId = squadId;
     }
 
     @Override
@@ -25,13 +26,14 @@ public class Hero {
         if (!(o instanceof Hero)) return false;
         Hero hero = (Hero) o;
         return getName() == hero.getName()  &&
-                Objects.equals(getName(), hero.getName());
+                Objects.equals(getName(), hero.getName()) &&
+                Objects.equals(getSquadId(), hero.getSquadId());
     }
 
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getAge(),getWeakness(),getSpecial_power());
+        return Objects.hash(getName(), getAge(),getWeakness(),getSpecial_power(), getSquadId());
     }
 
     public void setName(String name) {
@@ -46,11 +48,19 @@ public class Hero {
         this.special_power = special_power;
     }
 
+    public int getSquadId() {
+        return squadId;
+    }
+
+    public void setSquadId(int squadId) {
+        this.squadId = squadId;
+    }
+
     public void setWeakness(String weakness) {
         this.weakness = weakness;
     }
 
-    public int getId() {
+    public static int getId() {
         return id;
     }
     public String getName() {

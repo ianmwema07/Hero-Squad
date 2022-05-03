@@ -9,7 +9,8 @@ public interface HeroDao {
     static void update(String newHero) {
     }
 
-    abstract void add(Hero hero);
+    static void add(Hero hero) {
+    }
 
     // LIST
     static List<Hero> getAll() {
@@ -30,7 +31,9 @@ public interface HeroDao {
 
     void update(int id, String name);
 
-    void update(int id, String name, int age, String newSpecialPower, String weakness);
+
+
+    void update(int id, String name, int age, String newSpecialPower, String weakness, int squad_id);
 
     // DELETE
     static void deleteById(int id) {

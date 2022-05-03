@@ -13,7 +13,7 @@ public class Sql2oHeroDao implements HeroDao{
 
 
     public void add(Hero hero) {
-        String sql = "INSERT INTO heroes (name, age, special_power, weakness ) VALUE(:name, :age, :special_power, :weakness)";
+        String sql = "INSERT INTO heroes (name, age, special_power, weakness, squad_id ) VALUE(:name, :age, :special_power, :weakness, :squadId)";
         try(Connection con = sql2o.open()){ //try to open a connection
             int id = (int) con.createQuery(sql, true) //make a new variable
                     .bind(hero) //map my argument onto the query, so we can use information from it
@@ -51,12 +51,15 @@ public class Sql2oHeroDao implements HeroDao{
     }
 
 
+
+
     @Override
-    public void update(int id, String name, int age, String newSpecialPower, String weakness){
-        String sql = "UPDATE heroes SET special_power = :special_power WHERE id=:id";
+    public void update(int id, String name, int age, String newSpecialPower, String weakness, int squad_id){
+        String sql = "UPDATE heroes SET (special_power, squadId) = (:special_power,:squad_id) WHERE id=:id";
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
                     .addParameter("special_power", newSpecialPower)
+                    .addParameter("squad_id")
                     .addParameter("id",id)
                     .executeUpdate();
         } catch (Sql2oException ex) {
