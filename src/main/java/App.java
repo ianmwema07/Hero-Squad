@@ -6,7 +6,9 @@ import java.util.Map;
 import dao.HeroDao;
 import dao.Sql2oHeroDao;
 import dao.Sql2oSquadDao;
+import dao.SquadDao;
 import models.Hero;
+import models.Squad;
 import org.sql2o.Sql2o;
 import spark.ModelAndView;
 import spark.Request;
@@ -91,6 +93,16 @@ public class App {
             Hero foundHero = HeroDao.findById(idOfHeroToFind); //change
             model.put("hero", foundHero);
             return new ModelAndView(model, "hero-detail.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: show all tasks in all categories and show all categories
+        get("/", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Squad> allSquads = squadDao.getAll();
+            model.put("squads", allSquads);
+            List<Hero> heroes = heroDao.getAll();
+            model.put("heroes", heroes);
+            return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
 //        //get: delete an individual task
