@@ -2,10 +2,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import dao.HeroDao;
 import dao.Sql2oHeroDao;
 import models.Hero;
 import org.sql2o.Sql2o;
 import spark.ModelAndView;
+import spark.Request;
+import spark.Response;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import static spark.Spark.*;
 public class App {
@@ -18,7 +21,7 @@ public class App {
     //get: delete all heroes
         get("/heroes/delete",(req,res) -> {
             Map<String, Object> model = new HashMap<>();
-            Hero.clearAllHeroes();
+            HeroDao.clearAllHeroes();
             res.redirect("/");
             return null;
         }, new HandlebarsTemplateEngine());
@@ -26,8 +29,7 @@ public class App {
         get("/heroes/:id/delete",(req, res)->{
            Map<String, Object> model = new HashMap<>();
             int idOfHeroToBeDeleted = Integer.parseInt(req.params("id"));
-            Hero deleteHero = Hero.findById(idOfHeroToBeDeleted); //change
-            deleteHero.deleteHero();
+            HeroDao.deleteById(idOfHeroToBeDeleted);
             res.redirect("/");
             return null;
         }, new HandlebarsTemplateEngine());
@@ -35,7 +37,7 @@ public class App {
         //get: show all tasks
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            ArrayList<Hero> heroes = Hero.getAll(); //change
+            ArrayList<Hero> heroes = (ArrayList<Hero>) HeroDao.getAll(); //change
             model.put("heroes", heroes);
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
@@ -65,7 +67,7 @@ public class App {
         get("/heroes/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfHeroToFind = Integer.parseInt(req.params("id"));
-            Hero foundHero = Hero.findById(idOfHeroToFind); //change
+            int foundHero = HeroDao.findById(idOfHeroToFind); //change
             model.put("hero", foundHero);
             return new ModelAndView(model, "hero-detail.hbs");
         }, new HandlebarsTemplateEngine());
@@ -74,23 +76,25 @@ public class App {
         get("/heroes/:id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfHeroToEdit = Integer.parseInt(req.params("id"));
-            Hero editHero = Hero.findById(idOfHeroToEdit); //change
+            int editHero = HeroDao.findById(idOfHeroToEdit); //change
             model.put("editHero", editHero);
             return new ModelAndView(model, "hero-form.hbs");
         }, new HandlebarsTemplateEngine());
 
 
         //task: process a form to update a task
-        post("/heroes/:id", (req, res) -> { //URL to update task on POST route
-            Map<String, Object> model = new HashMap<>();
-            String newHero = req.queryParams("name");
-            int idOfHeroToEdit = Integer.parseInt(req.params("id"));
-            Hero editHero = Hero.findById(idOfHeroToEdit); //change
-            editHero.update(newHero); //change
-            res.redirect("/");
-            return null;
-        }, new HandlebarsTemplateEngine());
+        post("/heroes/:id", App::handle, new HandlebarsTemplateEngine());
 
 
+    }
+
+    private static ModelAndView handle(Request req, Response res) { //URL to update task on POST route
+        Map<String, Object> model = new HashMap<>();
+        String newHero = req.queryParams("name");
+        int idOfHeroToEdit = Integer.parseInt(req.params("id"));
+        int editHero = HeroDao.findById(idOfHeroToEdit); //change
+        HeroDao.update(newHero); //change
+        res.redirect("/");
+        return null;
     }
 }

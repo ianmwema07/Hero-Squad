@@ -5,16 +5,32 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Hero {
-    public String name;
-    public int age;
-    public String special_power;
-    public String weakness;
+
+    private String name;
+    private int age;
+    private String special_power;
+    private String weakness;
 
     public Hero(String name, int age, String special_power, String weakness) {
         this.name = name;
         this.age = age;
         this.special_power = special_power;
         this.weakness = weakness;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Hero)) return false;
+        Hero hero = (Hero) o;
+        return getName() == hero.getName()  &&
+                Objects.equals(getName(), hero.getName());
+    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getAge(),getWeakness(),getSpecial_power());
     }
 
     public void setName(String name) {

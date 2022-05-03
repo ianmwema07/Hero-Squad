@@ -6,22 +6,36 @@ import java.util.List;
 public interface HeroDao {
 
     //List of Heroes
-    List<Hero> getAll();
+    static List<Hero> getAll() {
+        return null;
+    }
 
     //Create
     void add(Hero hero);
 
+    List<Hero> getAll();
+
     //Read
+    static int findById(int id) {
+        return 0;
+    }
+
     Hero findById(int id);
 
-    void deleteById(int id);
+    static void deleteById(int id) {
+    }
+
+    static void clearAllHeroes() {
+
+    }
+
+    //update
+    static void update(String name) {
+
+    }
 
     void clearAllTasks();
 
-    //update
-    //void update(int id, String name);
-
     //DELETE
-    // void deleteById(int id);
-    //void clearAllHeroes();
+
 }
