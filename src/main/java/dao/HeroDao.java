@@ -4,20 +4,32 @@ import models.Hero;
 import java.util.List;
 
 public interface HeroDao {
+
+
+    static void update(String newHero) {
+    }
+
     abstract void add(Hero hero);
 
     // LIST
-    List<Hero> getAll();
+    static List<Hero> getAll() {
+        return null;
+    }
 
-    Hero findById(int id);
+    static Hero findById(int id) {
+
+
+        return null;
+    }
 
     // UPDATE
-     void update(int id, String name);
-
-    void update(int id, String name, int age, String newSpecialPower, String weakness);
 
     // DELETE
-     void deleteById(int id);
-     void clearAllHeroes();
+    static void deleteById(int id) {
+    }
+
+    static void clearAllHeroes() {
+
+    }
 
 }

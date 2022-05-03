@@ -57,7 +57,7 @@ public class App {
             String special_power = req.queryParams("special_power");
             String weakness = req.queryParams("weakness");
 
-            Hero newHero = new Hero(name,age,special_power,weakness,id); //change
+            Hero newHero = new Hero("Batman",43,"rich","ego",2); //change
             heroDao.add(newHero);
             res.redirect("/");
             return null;
@@ -67,7 +67,7 @@ public class App {
         get("/heroes/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfHeroToFind = Integer.parseInt(req.params("id"));
-            int foundHero = HeroDao.findById(idOfHeroToFind); //change
+            Hero foundHero = HeroDao.findById(idOfHeroToFind); //change
             model.put("hero", foundHero);
             return new ModelAndView(model, "hero-detail.hbs");
         }, new HandlebarsTemplateEngine());
@@ -76,7 +76,7 @@ public class App {
         get("/heroes/:id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfHeroToEdit = Integer.parseInt(req.params("id"));
-            int editHero = HeroDao.findById(idOfHeroToEdit); //change
+            Hero editHero = HeroDao.findById(idOfHeroToEdit); //change
             model.put("editHero", editHero);
             return new ModelAndView(model, "hero-form.hbs");
         }, new HandlebarsTemplateEngine());
@@ -92,7 +92,7 @@ public class App {
         Map<String, Object> model = new HashMap<>();
         String newHero = req.queryParams("name");
         int idOfHeroToEdit = Integer.parseInt(req.params("id"));
-        int editHero = HeroDao.findById(idOfHeroToEdit); //change
+        Hero editHero = HeroDao.findById(idOfHeroToEdit); //change
         HeroDao.update(newHero); //change
         res.redirect("/");
         return null;
