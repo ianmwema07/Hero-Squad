@@ -11,11 +11,12 @@ public class Hero {
     private String special_power;
     private String weakness;
 
-    public Hero(String name, int age, String special_power, String weakness) {
+    public Hero(String name, int age, String special_power, String weakness,int id) {
         this.name = name;
         this.age = age;
         this.special_power = special_power;
         this.weakness = weakness;
+        this.id = id;
     }
 
     @Override
@@ -48,6 +49,7 @@ public class Hero {
     public void setWeakness(String weakness) {
         this.weakness = weakness;
     }
+
     public int getId() {
         return id;
     }

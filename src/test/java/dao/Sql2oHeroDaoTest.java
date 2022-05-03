@@ -26,9 +26,17 @@ public class Sql2oHeroDaoTest {
 
     @Test
     public void addingCourseSetsAge() throws Exception {
-        Hero hero = new Hero("BatMan",43,"rich","Ego");
-        int originalHeroAge = hero.getAge();
+        Hero hero = new Hero("BatMan",43,"rich","Ego",1);
+        int originalHeroAge = hero.getId();
         heroDao.add(hero);
-        assertNotEquals(originalHeroAge, hero.getAge()); //how does this work?
+        assertNotEquals(originalHeroAge, hero.getId()); //how does this work?
+    }
+
+    @Test
+    public void existingHeroesCanBeFoundById() throws Exception {
+        Hero hero = new Hero("BatMan",43,"rich","Ego",1);
+        HeroDao.add(hero); //add to dao (takes care of saving)
+        Hero foundHero = HeroDao.findById(Hero.getId()); //retrieve
+        assertEquals(hero, foundHero); //should be the same
     }
 }

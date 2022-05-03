@@ -4,13 +4,11 @@ import models.Hero;
 import java.util.List;
 
 public interface HeroDao {
+    abstract void add(Hero hero);
+
     // LIST
     List<Hero> getAll();
 
-    // CREATE
-    void add(Hero hero);
-
-    // READ
     Hero findById(int id);
 
     // UPDATE

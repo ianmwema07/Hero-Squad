@@ -20,6 +20,6 @@ public class HeroTest{
 
 
     private Hero setupNewHero() {
-        return new Hero("Batman",43,"money","Ego");
+        return new Hero("Batman",43,"money","Ego",1);
     }
 }

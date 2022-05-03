@@ -11,7 +11,7 @@ public class Sql2oHeroDao implements HeroDao{
         this.sql2o = sql2o;
     }
 
-    @Override
+
     public void add(Hero hero) {
         String sql = "INSERT INTO heroes (name, age, special_power, weakness ) VALUE(:name, :age, :special_power, :weakness)";
         try(Connection con = sql2o.open()){ //try to open a connection
@@ -43,6 +43,11 @@ public class Sql2oHeroDao implements HeroDao{
                     .addParameter("id", id) //key/value pair, key must match above
                     .executeAndFetchFirst(Hero.class); //fetch an individual item
         }
+    }
+
+    @Override
+    public void update(int id, String name) {
+
     }
 
     public void update(int id, String name,int age, String newSpecialPower, String weakness ){
