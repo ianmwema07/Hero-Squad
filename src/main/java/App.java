@@ -124,6 +124,18 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
+        //get: show an individual category and tasks it contains
+        get("/squad/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfSquadToFind = Integer.parseInt(req.params("id")); //new
+            Squad foundSquad = squadDao.findById(idOfSquadToFind);
+            model.put("squad", foundSquad);
+            List<Hero> allHeroesBySquad = squadDao.getAllHeroesBySquad(idOfSquadToFind);
+            model.put("heroes", allHeroesBySquad);
+            model.put("squads", squadDao.getAll()); //refresh list of links for navbar
+            return new ModelAndView(model, "squad-detail.hbs"); //new
+        }, new HandlebarsTemplateEngine());
+
 //        //get: delete an individual task
 //        get("/heroes/:id/delete", (req, res) -> {
 //            Map<String, Object> model = new HashMap<>();
