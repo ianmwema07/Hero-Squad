@@ -18,8 +18,8 @@ import static spark.Spark.*;
 public class App {
     public static void main(String[] args) {
         staticFileLocation("/public");
-        String connectionString = "jdbc:h2:~/todolist.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
-        Sql2o sql2o = new Sql2o(connectionString, "", "");
+        String connectionString = "jdbc:postgresql://localhost:5432/todolist"; //connect to todolist, not todolist_test!
+        Sql2o sql2o = new Sql2o(connectionString, null, null);
         Sql2oHeroDao heroDao = new Sql2oHeroDao(sql2o);
         Sql2oSquadDao squadDao = new Sql2oSquadDao(sql2o);
 
@@ -136,6 +136,71 @@ public class App {
             model.put("heroes", allHeroesBySquad);
             model.put("squads", squadDao.getAll()); //refresh list of links for navbar
             return new ModelAndView(model, "squad-detail.hbs"); //new
+        }, new HandlebarsTemplateEngine());
+
+        //get: show a form to update a hero
+        get("/squads/:id/edit", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("editSquad", true);
+            Squad squad = squadDao.findById(Integer.parseInt(req.params("id")));
+            model.put("squad", squad);
+            model.put("squads", squadDao.getAll()); //refresh list of links for navbar
+            return new ModelAndView(model, "squad-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
+        //post: process a form to update a Hero
+        post("/squads/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfSquadToEdit = Integer.parseInt(req.params("id"));
+            String newName = req.queryParams("newSquadName");
+            squadDao.update(idOfSquadToEdit, newName);
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        //get: show a form to update a hero
+        get("/heroes/:id/edit", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Squad> allSquads = squadDao.getAll();
+            model.put("squads", allSquads);
+            Hero hero = heroDao.findById(Integer.parseInt(req.params("id")));
+            model.put("hero", hero);
+            model.put("editHero", true);
+            return new ModelAndView(model, "hero-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+//post: process a form to update a task
+        post("/heroes/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int heroToEditId = Integer.parseInt(req.params("id"));
+            String name = req.queryParams("name");
+            int age = Integer.parseInt(req.queryParams("age"));
+            String special_power = req.queryParams("special_power");
+            String weakness = req.queryParams("weakness");
+
+            int newSquadId = Integer.parseInt(req.queryParams("squadId"));
+            heroDao.update(heroToEditId, name,age,special_power,weakness, newSquadId);
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        //get: delete all squads and all tasks
+        get("/squads/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            squadDao.clearAllSquads();
+            heroDao.clearAllHeroes();
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+
+//get: delete all heroes
+        get("/heroes/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            heroDao.clearAllHeroes();
+            res.redirect("/");
+            return null;
         }, new HandlebarsTemplateEngine());
 
 //        //get: delete an individual task

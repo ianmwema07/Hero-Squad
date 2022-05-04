@@ -4,6 +4,7 @@ import models.Hero;
 import models.Squad;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
+import org.sql2o.Sql2oException;
 
 
 import java.util.List;
@@ -32,5 +33,18 @@ public class Sql2oSquadDao {
 
     public List<Squad> getAll() {
         return null;
+    }
+
+    public void update(int idOfSquadToEdit, String newName) {
+    }
+
+    public void clearAllSquads() {
+        String sql = "DELETE from squads";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .executeUpdate();
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
     }
 }
