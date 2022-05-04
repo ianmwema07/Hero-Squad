@@ -57,6 +57,8 @@ public class App {
         //task: process new task form
         post("/heroes", (req, res) -> { //URL to make new task on POST route
             Map<String, Object> model = new HashMap<>();
+            List<Squad> allSquads = squadDao.getAll();
+            model.put("squads", allSquads);
             String name = req.queryParams("name");
             int age = Integer.parseInt(req.queryParams("age"));
             String special_power = req.queryParams("special_power");
