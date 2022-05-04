@@ -105,6 +105,25 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //show new category form
+        get("/squads/new", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Squad> squads = squadDao.getAll(); //refresh list of links for navbar
+            model.put("squads", squads);
+            return new ModelAndView(model, "squad-form.hbs"); //new
+        }, new HandlebarsTemplateEngine());
+
+
+//post: process new category form
+        post("/squads", (req, res) -> { //new
+            Map<String, Object> model = new HashMap<>();
+            String name = req.queryParams("name");
+            Squad newSquad = new Squad(6,"Justice League","Fighting Crime");
+            squadDao.add(newSquad);
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
 //        //get: delete an individual task
 //        get("/heroes/:id/delete", (req, res) -> {
 //            Map<String, Object> model = new HashMap<>();
