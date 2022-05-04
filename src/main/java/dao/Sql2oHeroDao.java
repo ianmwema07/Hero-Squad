@@ -61,7 +61,6 @@ public class Sql2oHeroDao implements HeroDao{
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
                     .addParameter("special_power", newSpecialPower)
-                    .addParameter("squad_id")
                     .addParameter("id",id)
                     .executeUpdate();
         } catch (Sql2oException ex) {
