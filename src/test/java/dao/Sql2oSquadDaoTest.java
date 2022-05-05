@@ -17,26 +17,26 @@ public class Sql2oSquadDaoTest extends TestCase {
     private static Sql2oHeroDao heroDao;
     private static Connection conn;
 
-    @BeforeClass
-    public void setUp() throws Exception{
-        String connectionString = "jdbc:postgresql://localhost:5432/todolist_test"; // connect to postgres test database
-        Sql2o sql2o = new Sql2o(connectionString, null,null);
-        squadDao = new Sql2oSquadDao(sql2o);
-        heroDao = new Sql2oHeroDao(sql2o);
-        conn = sql2o.open();
-    }
+//    @BeforeClass
+//    public void setUp() throws Exception{
+//        String connectionString = "jdbc:postgresql://ec2-54-164-40-66.compute-1.amazonaws.com:5432/d114ip9s55jkjm"; // connect to postgres test database
+//        Sql2o sql2o = new Sql2o(connectionString, "khzdzzcxzedfet", "1ada44be26a7f93fb69669afd44a51aaa3f245fb3ec6648e8db995708d893251");
+//        squadDao = new Sql2oSquadDao(sql2o);
+//        heroDao = new Sql2oHeroDao(sql2o);
+//        conn = sql2o.open();
+//    }
 
-    @After
-    public void tearDown() throws Exception{
-        System.out.println("Clearing database");
-        squadDao.clearAllSquads();
-        heroDao.clearAllHeroes();
-    }
-    @AfterClass
-    public static void shutDown() throws Exception{
-        conn.close();;
-        System.out.println("connection closed");
-    }
+//    @After
+//    public void tearDown() throws Exception{
+//        System.out.println("Clearing database");
+//        squadDao.clearAllSquads();
+//        heroDao.clearAllHeroes();
+//    }
+//    @AfterClass
+//    public static void shutDown() throws Exception{
+//        conn.close();;
+//        System.out.println("connection closed");
+//    }
 
     @Test
     public void addingCourseSetsSize() throws Exception {

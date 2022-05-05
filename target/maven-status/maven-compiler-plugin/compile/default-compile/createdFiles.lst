@@ -1,0 +1,7 @@
+dao/SquadDao.class
+dao/Sql2oHeroDao.class
+models/Squad.class
+App.class
+dao/Sql2oSquadDao.class
+models/Hero.class
+dao/HeroDao.class

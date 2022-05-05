@@ -28,11 +28,8 @@ public class App {
     public static void main(String[] args) {
         port(getHerokuAssignedPort());
         staticFileLocation("/public");
-
-
-        staticFileLocation("/public");
-        String connectionString = "jdbc:postgresql://postgres://khzdzzcxzedfet:1ada44be26a7f93fb69669afd44a51aaa3f245fb3ec6648e8db995708d893251@ec2-54-164-40-66.compute-1.amazonaws.com:5432/d114ip9s55jkjm"; //connect to todolist, not todolist_test!
-        Sql2o sql2o = new Sql2o(connectionString, "khzdzzcxzedfet", "ada44be26a7f93fb69669afd44a51aaa3f245fb3ec6648e8db995708d893251");
+        String connectionString = "jdbc:postgresql://ec2-54-164-40-66.compute-1.amazonaws.com:5432/d114ip9s55jkjm";
+        Sql2o sql2o = new Sql2o(connectionString, "khzdzzcxzedfet", "1ada44be26a7f93fb69669afd44a51aaa3f245fb3ec6648e8db995708d893251");
         Sql2oHeroDao heroDao = new Sql2oHeroDao(sql2o);
         Sql2oSquadDao squadDao = new Sql2oSquadDao(sql2o);
 
