@@ -28,8 +28,8 @@ public class App {
     public static void main(String[] args) {
         port(getHerokuAssignedPort());
         staticFileLocation("/public");
-        String connectionString = "jdbc:postgresql://ec2-54-164-40-66.compute-1.amazonaws.com:5432/d114ip9s55jkjm";
-        Sql2o sql2o = new Sql2o(connectionString, "khzdzzcxzedfet", "1ada44be26a7f93fb69669afd44a51aaa3f245fb3ec6648e8db995708d893251");
+        String connectionString = "jdbc:postgresql://localhost:5432/heroes";
+        Sql2o sql2o = new Sql2o(connectionString, "ian", "Neno$iri");
         Sql2oHeroDao heroDao = new Sql2oHeroDao(sql2o);
         Sql2oSquadDao squadDao = new Sql2oSquadDao(sql2o);
 
@@ -38,8 +38,8 @@ public class App {
         //get: show all tasks in all categories and show all categories
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Hero> heroes = heroDao.getAll();
-            model.put("heroes", heroes);
+//            List<Hero> heroes = heroDao.getAll();
+//            model.put("heroes", heroes);
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -76,7 +76,7 @@ public class App {
             String special_power = req.queryParams("special_power");
             String weakness = req.queryParams("weakness");
 
-            Hero newHero = new Hero("Batman", 43, "rich", "ego", 2, 2); //change
+            Hero newHero = new Hero("Batman", 43, "rich", "ego", 2); //change
             heroDao.add(newHero);
             res.redirect("/");
             return null;

@@ -10,14 +10,13 @@ public class Hero {
     private int age;
     private String special_power;
     private String weakness;
-    private int squadId;
-    public Hero(String name, int age, String special_power, String weakness,int id,int squadId) {
+
+    public Hero(String name, int age, String special_power, String weakness,int id) {
         this.name = name;
         this.age = age;
         this.special_power = special_power;
         this.weakness = weakness;
         this.id = id;
-        this.squadId = squadId;
     }
 
     @Override
@@ -26,14 +25,13 @@ public class Hero {
         if (!(o instanceof Hero)) return false;
         Hero hero = (Hero) o;
         return getName() == hero.getName()  &&
-                Objects.equals(getName(), hero.getName()) &&
-                Objects.equals(getSquadId(), hero.getSquadId());
+                Objects.equals(getName(), hero.getName()) ;
     }
 
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getAge(),getWeakness(),getSpecial_power(), getSquadId());
+        return Objects.hash(getName(), getAge(),getWeakness(),getSpecial_power());
     }
 
     public void setName(String name) {
@@ -48,13 +46,9 @@ public class Hero {
         this.special_power = special_power;
     }
 
-    public int getSquadId() {
-        return squadId;
-    }
 
-    public void setSquadId(int squadId) {
-        this.squadId = squadId;
-    }
+
+
 
     public void setWeakness(String weakness) {
         this.weakness = weakness;
