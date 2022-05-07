@@ -7,14 +7,20 @@
             <button type="submit" class="btn btn-default">Go!</button>
         </form>
     {{else}}
-        <h1>Add a new Squad!</h1>
+        <h3 class="alternate-result">Add a new Squad!</h3>
         <form action="/squads" method="post">
-            <label for="name">Squad Name</label> <br>
-            <input id="squad_name" name="squad_name" type="text"><br>
-            <label for="cause">Squad Cause</label> <br>
-            <input id="squad_name" name="cause" type="text"><br>
-            <label for="size">Squad Size</label> <br>
-            <input id="squad_name" name="cause" type="text"><br>
+            <div class="mb-3">
+                <label for="name">Squad Name</label> <br>
+                <input class="form-control" id="squad_name" name="squad_name" type="text"><br>
+            </div>
+            <div class="mb-3">
+                <label for="cause">Squad Cause</label> <br>
+                <input class="form-control" id="cause" name="cause" type="text"><br>
+            </div>
+            <div class="mb-3">
+                <label for="size">Squad Size</label> <br>
+                <input class="form-control" id="squad_name" name="maxSize" type="number"><br>
+            </div>
             <button type="submit" class="btn btn-primary">Add Squad</button>
         </form>
     {{/if}}

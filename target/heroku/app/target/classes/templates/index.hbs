@@ -1,0 +1,19 @@
+
+{{#partial "content"}}
+    <h1>Heroes</h1>
+
+    {{#if heros}}
+        {{#each heros }}
+            <p><a href="/squads/{{squadId}}/heroes/{{id}}">{{description}}</a></p>
+        {{/each}}
+    {{else}}
+        <p>No heroes!</p>
+    {{/if}}
+
+{{/partial}}
+
+{{> layout.hbs}}
+
+
+
+
