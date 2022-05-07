@@ -14,14 +14,14 @@ public interface SquadDao {
     }
 
     //READ
-    static Squad findById(int id) {
-        return null;
-    }
+     Squad findById(int id);
+
+    List<Hero> getAllHeroesBySquad(int squadId);
 
     //UPDATE
-    void update(int id, String name);
+    void update(int id, String name, String cause, int max_size);
 
     //DELETE
     void deleteById(int id);
-    void clearAllCategories();
+    void clearAllSquads();
 }

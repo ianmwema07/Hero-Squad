@@ -28,7 +28,7 @@ public class App {
     public static void main(String[] args) {
         port(getHerokuAssignedPort());
         staticFileLocation("/public");
-        String connectionString = "jdbc:postgresql://localhost:5432/heroes";
+        String connectionString = "jdbc:postgresql://localhost:5432/herosquad";
         Sql2o sql2o = new Sql2o(connectionString, "ian", "Neno$iri");
         Sql2oHeroDao heroDao = new Sql2oHeroDao(sql2o);
         Sql2oSquadDao squadDao = new Sql2oSquadDao(sql2o);
@@ -129,13 +129,14 @@ public class App {
 
 
 //post: process new category form
-        post("/squads", (req, res) -> { //new
+        post("/squads/create", (req, res) -> { //new
             Map<String, Object> model = new HashMap<>();
             String name = req.queryParams("name");
-            Squad newSquad = new Squad(6,"Justice League","Fighting Crime");
+            String cause = req.queryParams("cause");
+            int size = Integer.parseInt(req.queryParams("max_size"));
+            Squad newSquad = new Squad(size,name,cause);
             squadDao.add(newSquad);
-            res.redirect("/");
-            return null;
+            return modelAndView(model,"index.hbs");
         }, new HandlebarsTemplateEngine());
 
         //get: show an individual category and tasks it contains
@@ -164,9 +165,11 @@ public class App {
         //post: process a form to update a Hero
         post("/squads/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            int idOfSquadToEdit = Integer.parseInt(req.params("id"));
-            String newName = req.queryParams("newSquadName");
-            squadDao.update(idOfSquadToEdit, newName);
+            int id = Integer.parseInt(req.queryParams(":id"));
+            String cause = req.queryParams("cause");
+            String name = req.queryParams("name");
+            int max_size = Integer.parseInt(req.queryParams("max_size"));
+            squadDao.update(id, name, cause, max_size);
             res.redirect("/");
             return null;
         }, new HandlebarsTemplateEngine());

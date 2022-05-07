@@ -1,20 +1,26 @@
 {{#partial "content"}}
     {{#if editSquad}}
         <h1>Edit this Squad!</h1>
-        <form action="/squad/{{squad.id}}" method="post">
+        <form class="squad-form" action="/squad/{{squad.id}}" method="post">
             <label for="name">Edit this squad's name</label>
             <input id="newSquadName" name="newSquadName" type="text" value="{{squad.name}}">
             <button type="submit" class="btn btn-default">Go!</button>
         </form>
     {{else}}
-        <h1>Add a new Squad!</h1>
-        <form action="/squads" method="post">
-            <label for="name">Squad Name</label> <br>
-            <input id="squad_name" name="squad_name" type="text"><br>
-            <label for="cause">Squad Cause</label> <br>
-            <input id="squad_name" name="cause" type="text"><br>
-            <label for="size">Squad Size</label> <br>
-            <input id="squad_name" name="cause" type="text"><br>
+        <h3 class="alternate-result">Add a new Squad!</h3>
+        <form  class="squad-form" action="/squads/{{squad.id}}" method="post">
+            <div class="mb-3">
+                <label for="name">Squad Name</label> <br>
+                <input class="form-control" id="squad_name" name="squad_name" type="text"><br>
+            </div>
+            <div class="mb-3">
+                <label for="cause">Squad Cause</label> <br>
+                <input class="form-control" id="cause" name="cause" type="text"><br>
+            </div>
+            <div class="mb-3">
+                <label for="size">Squad Size</label> <br>
+                <input class="form-control" id="squad_name" name="maxSize" type="number"><br>
+            </div>
             <button type="submit" class="btn btn-primary">Add Squad</button>
         </form>
     {{/if}}
