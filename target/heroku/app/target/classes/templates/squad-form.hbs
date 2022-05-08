@@ -3,23 +3,31 @@
         <h1>Edit this Squad!</h1>
         <form class="squad-form" action="/squad/{{squad.id}}" method="post">
             <label for="name">Edit this squad's name</label>
-            <input id="newSquadName" name="newSquadName" type="text" value="{{squad.name}}">
+            <input id="name" name="name" type="text" value="{{squad.name}}">
+            <div class="mb-3">
+                <label for="cause">Squad Cause</label> <br>
+                <input class="form-control" id="cause" name="cause" type="text" value="{{squad.cause}}"><br>
+            </div>
+            <div class="mb-3">
+                <label for="max_size">Squad Size</label> <br>
+                <input class="form-control" id="max_size" name="max_size" type="number" value="{{squad.max_size}}"><br>
+            </div>
             <button type="submit" class="btn btn-default">Go!</button>
         </form>
     {{else}}
         <h3 class="alternate-result">Add a new Squad!</h3>
-        <form  class="squad-form" action="/squads/{{squad.id}}" method="post">
+        <form  class="squad-form" action="/squads/create" method="post">
             <div class="mb-3">
                 <label for="name">Squad Name</label> <br>
-                <input class="form-control" id="squad_name" name="squad_name" type="text"><br>
+                <input class="form-control" id="name" name="name" type="text"><br>
             </div>
             <div class="mb-3">
                 <label for="cause">Squad Cause</label> <br>
                 <input class="form-control" id="cause" name="cause" type="text"><br>
             </div>
             <div class="mb-3">
-                <label for="size">Squad Size</label> <br>
-                <input class="form-control" id="squad_name" name="maxSize" type="number"><br>
+                <label for="max_size">Squad Size</label> <br>
+                <input class="form-control" id="max_size" name="max_size" type="number"><br>
             </div>
             <button type="submit" class="btn btn-primary">Add Squad</button>
         </form>
